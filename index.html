@@ -370,62 +370,6 @@
   }
   footer span { color: var(--teal); }
 
-  /* Availability badge */
-  .avail-pill {
-    display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(0, 212, 170, 0.1);
-    border: 1px solid rgba(0, 212, 170, 0.4);
-    color: var(--teal);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 0.7rem; font-weight: 500;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.35rem 0.9rem; border-radius: 20px;
-  }
-  .avail-dot {
-    width: 7px; height: 7px;
-    background: var(--teal); border-radius: 50%;
-    animation: ping 1.5s ease-in-out infinite;
-  }
-  @keyframes ping {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,170,0.6); }
-    50% { box-shadow: 0 0 0 5px rgba(0,212,170,0); }
-  }
-
-  .nav-avail {
-    display: flex; align-items: center; gap: 0.5rem;
-    background: rgba(0,212,170,0.08);
-    border: 1px solid rgba(0,212,170,0.3);
-    border-radius: 20px; padding: 0.3rem 0.8rem;
-    font-size: 0.68rem; color: var(--teal);
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.1em;
-  }
-  .nav-avail-dot {
-    width: 6px; height: 6px;
-    background: var(--teal); border-radius: 50%;
-    animation: ping 1.5s ease-in-out infinite;
-  }
-
-  .hero-avail-banner {
-    display: inline-flex; align-items: center; gap: 1rem;
-    background: rgba(0,212,170,0.07);
-    border: 1px solid rgba(0,212,170,0.3);
-    border-radius: 8px; padding: 0.9rem 1.5rem;
-    margin-top: 2.5rem; margin-bottom: 0.5rem;
-    opacity: 0; animation: fadeUp 0.8s 0.85s forwards;
-    flex-wrap: wrap;
-  }
-  .hero-avail-banner .avail-dot { width: 9px; height: 9px; }
-  .hero-avail-text {
-    font-size: 0.88rem; font-weight: 600; color: var(--teal);
-    letter-spacing: 0.06em;
-  }
-  .hero-avail-sub {
-    font-size: 0.76rem; color: var(--grey);
-    font-family: 'JetBrains Mono', monospace;
-    letter-spacing: 0.05em;
-  }
-
   /* Scroll reveal */
   .reveal {
     opacity: 0; transform: translateY(30px);
@@ -458,12 +402,7 @@
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="cover-letter.html" style="color:var(--teal); border:1px solid rgba(0,212,170,0.35); padding:0.28rem 0.8rem; border-radius:20px;">Cover Letter ↗</a></li>
   </ul>
-  <div class="nav-avail">
-    <div class="nav-avail-dot"></div>
-    Available to Join Immediately
-  </div>
 </nav>
 
 <!-- HERO -->
@@ -497,15 +436,8 @@
     </div>
   </div>
 
-  <div class="hero-avail-banner">
-    <div class="avail-dot"></div>
-    <span class="hero-avail-text">Available to Join Immediately</span>
-    <span class="hero-avail-sub">· Open to full-time enterprise product roles · Bangalore & Remote</span>
-  </div>
-
   <div class="hero-cta">
     <a href="#experience" class="btn btn-primary">View Experience ↓</a>
-    <a href="cover-letter.html" class="btn btn-ghost">📄 Cover Letter</a>
     <a href="mailto:anshvilla@gmail.com" class="btn btn-ghost">Get In Touch</a>
   </div>
 </section>
@@ -532,7 +464,8 @@
         not intuition.
       </p>
       <p>
-        Based in Bangalore, Karnataka — and <strong>available to join immediately</strong>. Actively seeking enterprise product leadership roles where scale, ambiguity, and customer obsession are the daily norm. Open to both on-site and remote opportunities.
+        Based in Bangalore, Karnataka — open to enterprise product leadership roles where scale, ambiguity, and 
+        customer obsession are the daily norm.
       </p>
     </div>
     <div class="about-info">
@@ -540,7 +473,7 @@
         <div class="info-icon">📧</div>
         <div>
           <div class="info-label">Email</div>
-          <div class="info-val"><a href="/cdn-cgi/l/email-protection#a9c8c7dac1dfc0c5c5c8e9cec4c8c0c587cac6c4"><span class="__cf_email__" data-cfemail="65040b160d130c090904250208040c094b060a08">[email&#160;protected]</span></a></div>
+          <div class="info-val"><a href="mailto:anshvilla@gmail.com">anshvilla@gmail.com</a></div>
         </div>
       </div>
       <div class="info-row">
@@ -829,16 +762,10 @@
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-label" style="justify-content:center">06 — Let's Connect</div>
-  <h2 class="section-title reveal">Available to Join Immediately</h2>
+  <h2 class="section-title reveal">Open to New Opportunities</h2>
   <div class="contact-card reveal">
-    <div style="display:flex; justify-content:center; margin-bottom:1.5rem;">
-      <span class="avail-pill"><span class="avail-dot"></span>Open to Offers · Notice Period: Immediate</span>
-    </div>
-    <p>I'm actively looking for my next enterprise product leadership role in FinTech, Digital Banking, Insurance, or SaaS — and can join without any notice period. If you have a role that needs an experienced PM who can hit the ground running, let's talk. I respond within 24 hours.</p>
+    <p>I'm always interested in discussing enterprise product leadership roles, especially in FinTech, Banking, Insurance, or SaaS platforms. Drop me a line — I respond within 24 hours.</p>
     <div class="contact-links">
-      <a href="cover-letter.html" class="contact-link" style="border-color:rgba(0,212,170,0.4); color:var(--teal);">
-        <span>📄</span> Read Cover Letter
-      </a>
       <a href="mailto:anshvilla@gmail.com" class="contact-link">
         <span>📧</span> anshvilla@gmail.com
       </a>
@@ -856,7 +783,7 @@
   Designed & built for <span>Sadanand Chougule</span> · Bangalore, India · 2026
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
   const ring = document.getElementById('cursorRing');
@@ -883,4 +810,19 @@
       ring.style.opacity = '0.2';
     });
     el.addEventListener('mouseleave', () => {
-   
+      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+      ring.style.opacity = '0.5';
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
