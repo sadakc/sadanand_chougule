@@ -20,7 +20,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -31,29 +30,24 @@
     cursor: none;
   }
 
-  /* Custom cursor */
   .cursor {
     width: 12px; height: 12px;
-    background: var(--teal);
-    border-radius: 50%;
+    background: var(--teal); border-radius: 50%;
     position: fixed; top: 0; left: 0;
     pointer-events: none; z-index: 9999;
-    transition: transform 0.15s ease, width 0.2s, height 0.2s;
+    transition: transform 0.15s ease;
     transform: translate(-50%, -50%);
   }
   .cursor-ring {
     width: 36px; height: 36px;
-    border: 1.5px solid var(--teal);
-    border-radius: 50%;
+    border: 1.5px solid var(--teal); border-radius: 50%;
     position: fixed; top: 0; left: 0;
     pointer-events: none; z-index: 9998;
     transform: translate(-50%, -50%);
-    transition: transform 0.35s ease, width 0.3s, height 0.3s, opacity 0.3s;
-    opacity: 0.5;
+    transition: transform 0.35s ease; opacity: 0.5;
   }
   body:hover .cursor { opacity: 1; }
 
-  /* Noise texture overlay */
   body::before {
     content: '';
     position: fixed; inset: 0;
@@ -69,19 +63,43 @@
     background: rgba(10,15,30,0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
+    flex-wrap: wrap; gap: 0.5rem;
   }
   .nav-logo {
     font-family: 'Playfair Display', serif;
     font-size: 1.1rem; font-weight: 700;
     color: var(--teal); letter-spacing: 0.02em;
   }
-  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; align-items: center; }
   .nav-links a {
     color: var(--grey); font-size: 0.78rem; font-weight: 600;
     letter-spacing: 0.12em; text-transform: uppercase; text-decoration: none;
     transition: color 0.2s;
   }
   .nav-links a:hover { color: var(--teal); }
+  .nav-links .nav-pill {
+    color: var(--teal);
+    border: 1px solid rgba(0,212,170,0.35);
+    padding: 0.28rem 0.8rem; border-radius: 20px;
+  }
+  .nav-avail {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(0,212,170,0.08);
+    border: 1px solid rgba(0,212,170,0.3);
+    border-radius: 20px; padding: 0.3rem 0.8rem;
+    font-size: 0.68rem; color: var(--teal);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+  }
+  .nav-avail-dot {
+    width: 6px; height: 6px;
+    background: var(--teal); border-radius: 50%;
+    animation: ping 1.5s ease-in-out infinite;
+  }
+  @keyframes ping {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(0,212,170,0.6); }
+    50% { box-shadow: 0 0 0 5px rgba(0,212,170,0); }
+  }
 
   /* Hero */
   #hero {
@@ -129,29 +147,45 @@
     opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
   }
   .hero-name span { color: var(--teal); }
-
   .hero-title {
     font-size: clamp(0.9rem, 2vw, 1.1rem);
     font-weight: 500; color: var(--grey);
-    margin-top: 1.5rem; max-width: 600px; line-height: 1.7;
+    margin-top: 1.5rem; max-width: 640px; line-height: 1.7;
     opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
   }
-
   .hero-stats {
     display: flex; gap: 3rem; margin-top: 3rem;
     opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
+    flex-wrap: wrap;
   }
   .stat { display: flex; flex-direction: column; }
   .stat-num {
     font-family: 'Playfair Display', serif;
-    font-size: 2.4rem; font-weight: 700; color: var(--teal);
-    line-height: 1;
+    font-size: 2.4rem; font-weight: 700; color: var(--teal); line-height: 1;
   }
   .stat-label { font-size: 0.72rem; color: var(--grey); letter-spacing: 0.1em; margin-top: 0.3rem; }
 
+  .hero-avail-banner {
+    display: inline-flex; align-items: center; gap: 1rem;
+    background: rgba(0,212,170,0.07);
+    border: 1px solid rgba(0,212,170,0.3);
+    border-radius: 8px; padding: 0.9rem 1.5rem;
+    margin-top: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+    flex-wrap: wrap;
+  }
+  .avail-dot {
+    width: 9px; height: 9px;
+    background: var(--teal); border-radius: 50%;
+    animation: ping 1.5s ease-in-out infinite;
+  }
+  .hero-avail-text { font-size: 0.88rem; font-weight: 600; color: var(--teal); letter-spacing: 0.06em; }
+  .hero-avail-sub { font-size: 0.76rem; color: var(--grey); font-family: 'JetBrains Mono', monospace; }
+
   .hero-cta {
-    display: flex; gap: 1rem; margin-top: 3rem;
+    display: flex; gap: 1rem; margin-top: 2rem;
     opacity: 0; animation: fadeUp 0.8s 1s forwards;
+    flex-wrap: wrap;
   }
   .btn {
     padding: 0.85rem 2rem; border-radius: 4px;
@@ -160,25 +194,18 @@
     cursor: none; text-decoration: none; transition: all 0.25s;
     display: inline-flex; align-items: center; gap: 0.5rem;
   }
-  .btn-primary {
-    background: var(--teal); color: var(--navy);
-    border: 1.5px solid var(--teal);
-  }
+  .btn-primary { background: var(--teal); color: var(--navy); border: 1.5px solid var(--teal); }
   .btn-primary:hover { background: transparent; color: var(--teal); }
-  .btn-ghost {
-    background: transparent; color: var(--white);
-    border: 1.5px solid rgba(255,255,255,0.2);
-  }
+  .btn-ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.2); }
   .btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
 
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
-    to { opacity: 1; transform: translateY(0); }
+    to   { opacity: 1; transform: translateY(0); }
   }
 
   /* Sections */
   section { padding: 6rem 4rem; position: relative; }
-
   .section-label {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem; color: var(--teal);
@@ -186,42 +213,53 @@
     display: flex; align-items: center; gap: 0.8rem;
     margin-bottom: 0.8rem;
   }
-  .section-label::after {
-    content: ''; flex: 1; max-width: 40px;
-    height: 1px; background: var(--teal);
-  }
+  .section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--teal); }
   .section-title {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 700; line-height: 1.15;
-    margin-bottom: 3rem;
+    font-weight: 700; line-height: 1.15; margin-bottom: 3rem;
   }
 
   /* About */
   #about { background: var(--navy-mid); }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 4rem; align-items: start;
-  }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
   .about-text { font-size: 1rem; line-height: 1.85; color: #c0ccd8; }
   .about-text p + p { margin-top: 1.2rem; }
   .about-text strong { color: var(--teal); }
-
   .about-info { display: flex; flex-direction: column; gap: 1rem; }
   .info-row {
     display: flex; gap: 1rem; align-items: flex-start;
     padding: 1rem 1.2rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 6px;
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 6px;
   }
   .info-icon { font-size: 1.2rem; min-width: 24px; }
   .info-label { font-size: 0.7rem; color: var(--grey); letter-spacing: 0.1em; text-transform: uppercase; }
   .info-val { font-size: 0.9rem; margin-top: 0.2rem; }
   .info-val a { color: var(--teal); text-decoration: none; }
 
+  /* Key Contributions */
+  #contributions { background: var(--navy); }
+  .contrib-grid { display: flex; flex-direction: column; gap: 1rem; }
+  .contrib-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    padding: 1.2rem 1.5rem;
+    background: var(--card-bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--teal); border-radius: 6px;
+    transition: transform 0.2s, border-color 0.2s;
+  }
+  .contrib-item:hover { transform: translateX(6px); }
+  .contrib-tag {
+    flex-shrink: 0;
+    font-size: 0.62rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--navy); background: var(--teal);
+    padding: 0.22rem 0.6rem; border-radius: 3px;
+    margin-top: 0.15rem; white-space: nowrap;
+  }
+  .contrib-text { font-size: 0.88rem; color: #b8ccd8; line-height: 1.75; }
+
   /* Experience Timeline */
-  #experience { background: var(--navy); }
+  #experience { background: var(--navy-mid); }
   .timeline { position: relative; padding-left: 2rem; }
   .timeline::before {
     content: ''; position: absolute; left: 0; top: 0; bottom: 0;
@@ -230,15 +268,10 @@
   .timeline-item {
     position: relative; margin-bottom: 3rem;
     padding: 2rem 2rem 2rem 2.5rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    background: var(--card-bg); border: 1px solid var(--border); border-radius: 8px;
     transition: border-color 0.3s, transform 0.3s;
   }
-  .timeline-item:hover {
-    border-color: var(--teal);
-    transform: translateX(6px);
-  }
+  .timeline-item:hover { border-color: var(--teal); transform: translateX(6px); }
   .timeline-item::before {
     content: ''; position: absolute;
     left: -2.5rem; top: 2rem;
@@ -251,71 +284,56 @@
   .tl-period {
     font-family: 'JetBrains Mono', monospace;
     font-size: 0.7rem; color: var(--grey);
-    background: rgba(255,255,255,0.05);
-    padding: 0.25rem 0.7rem; border-radius: 20px;
+    background: rgba(255,255,255,0.05); padding: 0.25rem 0.7rem; border-radius: 20px;
   }
   .tl-role {
     font-family: 'Playfair Display', serif;
-    font-size: 1.35rem; font-weight: 700;
-    margin: 0.4rem 0 1rem;
+    font-size: 1.35rem; font-weight: 700; margin: 0.4rem 0 1rem;
+  }
+  .current-badge {
+    display: inline-block;
+    background: rgba(0,212,170,0.15); color: var(--teal);
+    font-size: 0.65rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.2rem 0.6rem; border-radius: 20px;
+    border: 1px solid var(--teal); margin-left: 0.6rem; vertical-align: middle;
   }
   .tl-desc { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
   .tl-desc li {
     font-size: 0.88rem; color: #b0bec5; line-height: 1.7;
     padding-left: 1rem; position: relative;
   }
-  .tl-desc li::before {
-    content: '▸'; position: absolute; left: 0; color: var(--teal); font-size: 0.65rem; top: 0.35rem;
-  }
-  .current-badge {
-    display: inline-block;
-    background: rgba(0,212,170,0.15);
-    color: var(--teal);
-    font-size: 0.65rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase;
-    padding: 0.2rem 0.6rem; border-radius: 20px;
-    border: 1px solid var(--teal);
-    margin-left: 0.6rem; vertical-align: middle;
-  }
+  .tl-desc li::before { content: '▸'; position: absolute; left: 0; color: var(--teal); font-size: 0.65rem; top: 0.35rem; }
 
   /* Skills */
-  #skills { background: var(--navy-mid); }
+  #skills { background: var(--navy); }
   .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
   .skill-card {
-    padding: 1.8rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
+    padding: 1.8rem; background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 8px;
     transition: border-color 0.3s, transform 0.3s;
   }
   .skill-card:hover { border-color: var(--teal); transform: translateY(-4px); }
   .skill-card-title {
     font-size: 0.7rem; color: var(--teal);
-    letter-spacing: 0.18em; text-transform: uppercase;
-    font-weight: 600; margin-bottom: 1.2rem;
-    display: flex; align-items: center; gap: 0.6rem;
+    letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600;
+    margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.6rem;
   }
   .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
   .tag {
-    font-size: 0.76rem; font-weight: 500;
-    padding: 0.3rem 0.75rem;
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 20px; color: #c0ccd8;
-    transition: all 0.2s;
+    font-size: 0.76rem; font-weight: 500; padding: 0.3rem 0.75rem;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; color: #c0ccd8; transition: all 0.2s;
   }
   .tag:hover { background: rgba(0,212,170,0.12); border-color: var(--teal); color: var(--teal); }
 
   /* Certifications */
-  #certifications { background: var(--navy); }
+  #certifications { background: var(--navy-mid); }
   .certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
   .cert-card {
-    padding: 1.5rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    display: flex; align-items: flex-start; gap: 1rem;
-    transition: all 0.3s;
+    padding: 1.5rem; background: var(--card-bg);
+    border: 1px solid var(--border); border-radius: 8px;
+    display: flex; align-items: flex-start; gap: 1rem; transition: all 0.3s;
   }
   .cert-card:hover { border-color: var(--gold); transform: translateY(-3px); }
   .cert-icon { font-size: 1.5rem; min-width: 36px; }
@@ -323,31 +341,32 @@
   .cert-org { font-size: 0.72rem; color: var(--grey); margin-top: 0.3rem; }
 
   /* Achievements */
-  #achievements { background: var(--navy-mid); }
+  #achievements { background: var(--navy); }
   .achievements-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; }
   .achieve-card {
-    padding: 1.8rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
-    border-radius: 8px;
-    transition: transform 0.3s;
+    padding: 1.8rem; background: var(--card-bg);
+    border: 1px solid var(--border); border-left: 3px solid var(--gold);
+    border-radius: 8px; transition: transform 0.3s;
   }
   .achieve-card:hover { transform: translateY(-4px); }
   .achieve-title { font-size: 0.95rem; font-weight: 600; color: var(--gold); margin-bottom: 0.4rem; }
   .achieve-desc { font-size: 0.82rem; color: var(--grey); line-height: 1.6; }
 
   /* Contact */
-  #contact {
-    background: var(--navy);
-    text-align: center;
+  #contact { background: var(--navy-mid); text-align: center; }
+  .avail-pill {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    background: rgba(0,212,170,0.1); border: 1px solid rgba(0,212,170,0.35);
+    color: var(--teal);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1.5rem;
   }
+  .avail-pill .avail-dot { width: 6px; height: 6px; }
   .contact-card {
-    max-width: 640px; margin: 0 auto;
-    padding: 3rem;
+    max-width: 660px; margin: 0 auto; padding: 3rem;
     background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(0,212,170,0.02));
-    border: 1px solid var(--border);
-    border-radius: 12px;
+    border: 1px solid var(--border); border-radius: 12px;
   }
   .contact-card p { font-size: 1rem; color: var(--grey); line-height: 1.7; margin-bottom: 2rem; }
   .contact-links { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; }
@@ -355,36 +374,31 @@
     display: flex; align-items: center; gap: 0.5rem;
     font-size: 0.82rem; color: var(--white);
     text-decoration: none; padding: 0.7rem 1.3rem;
-    border: 1px solid rgba(255,255,255,0.15); border-radius: 6px;
-    transition: all 0.25s;
+    border: 1px solid rgba(255,255,255,0.15); border-radius: 6px; transition: all 0.25s;
   }
   .contact-link:hover { border-color: var(--teal); color: var(--teal); }
+  .contact-link.highlight { border-color: rgba(0,212,170,0.4); color: var(--teal); }
 
   /* Footer */
   footer {
-    background: var(--navy-mid);
-    text-align: center;
-    padding: 2rem;
+    background: var(--navy);
+    text-align: center; padding: 2rem;
     font-size: 0.75rem; color: var(--grey);
     border-top: 1px solid var(--border);
   }
   footer span { color: var(--teal); }
 
-  /* Scroll reveal */
-  .reveal {
-    opacity: 0; transform: translateY(30px);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
+  /* Reveal — FIXED: visible by default, animate in on scroll */
+  .reveal { opacity: 1; transform: translateY(0); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.hidden { opacity: 0; transform: translateY(30px); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
   /* Responsive */
   @media (max-width: 768px) {
     nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1rem; }
     section, #hero { padding: 5rem 1.5rem 3rem; }
     .about-grid { grid-template-columns: 1fr; gap: 2rem; }
-    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
-    .tl-header { flex-direction: column; }
+    .hero-stats { gap: 1.5rem; }
   }
 </style>
 </head>
@@ -398,11 +412,13 @@
   <div class="nav-logo">SC.</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
+    <li><a href="#contributions">Contributions</a></li>
     <li><a href="#experience">Experience</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#certifications">Certs</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <div class="nav-avail"><div class="nav-avail-dot"></div>Available Immediately</div>
 </nav>
 
 <!-- HERO -->
@@ -413,32 +429,26 @@
   <div class="hero-eyebrow">Enterprise Product Manager</div>
   <h1 class="hero-name">Sadanand<br><span>Chougule</span></h1>
   <p class="hero-title">
-    11 years of experience building digital products across Core Banking, Insurance, and SaaS platforms. 
-    Bridging strategy, data, and engineering to ship products that matter.
+    11+ years delivering digital products across Core Banking, Insurance, SaaS, and CRM platforms —
+    for B2B and B2C. Bridging AI strategy, data, and engineering to ship products that move the needle.
   </p>
 
   <div class="hero-stats">
-    <div class="stat">
-      <span class="stat-num">11+</span>
-      <span class="stat-label">Years Experience</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">7+</span>
-      <span class="stat-label">Years in Product</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">4</span>
-      <span class="stat-label">Companies</span>
-    </div>
-    <div class="stat">
-      <span class="stat-num">6</span>
-      <span class="stat-label">Certifications</span>
-    </div>
+    <div class="stat"><span class="stat-num">11+</span><span class="stat-label">Years Experience</span></div>
+    <div class="stat"><span class="stat-num">7+</span><span class="stat-label">Years in Product</span></div>
+    <div class="stat"><span class="stat-num">$450K+</span><span class="stat-label">Annual Savings Delivered</span></div>
+    <div class="stat"><span class="stat-num">35%</span><span class="stat-label">Onboarding Effort Reduced</span></div>
+  </div>
+
+  <div class="hero-avail-banner">
+    <div class="avail-dot"></div>
+    <span class="hero-avail-text">Available to Join Immediately</span>
+    <span class="hero-avail-sub">· Open to full-time enterprise product roles · Bangalore &amp; Remote</span>
   </div>
 
   <div class="hero-cta">
     <a href="#experience" class="btn btn-primary">View Experience ↓</a>
-    <a href="mailto:anshvilla@gmail.com" class="btn btn-ghost">Get In Touch</a>
+    <a href="Sadanand_Chougule_Resume.pdf" download class="btn btn-ghost">⬇ Resume PDF</a>
   </div>
 </section>
 
@@ -449,23 +459,25 @@
   <div class="about-grid reveal">
     <div class="about-text">
       <p>
-        I'm a results-driven <strong>Enterprise Product Manager</strong> with a decade-plus of experience delivering 
-        frontend UI/UX, CRM, SaaS, PaaS, Backend, and RPA products across high-stakes industries like 
-        <strong>digital banking</strong> and <strong>insurance</strong>.
+        I'm a results-driven <strong>Enterprise Product Manager</strong> with 11+ years of experience delivering
+        UI/UX, CRM, SaaS, PaaS, Backend, and RPA products for both <strong>B2B and B2C</strong> customers across
+        Core Banking and Insurance — industries where getting it wrong is never an option.
       </p>
       <p>
-        My edge is the intersection of <strong>data-driven decision making</strong> and deep cross-functional 
-        collaboration — translating messy stakeholder needs into crisp product backlogs, roadmaps, and shipped features 
-        that users love.
+        My edge is the intersection of <strong>AI-augmented product thinking</strong> and deep cross-functional
+        execution — from Discovery to Production (0 → 1). I translate messy stakeholder requirements into crisp
+        backlogs, roadmaps, and shipped features backed by <strong>Pendo analytics, Tableau dashboards,
+        and LLM-powered workflows</strong>.
       </p>
       <p>
-        I'm certified in Agile, Scrum, and AI-augmented product workflows, and I actively integrate tools like 
-        <strong>Pendo, Tableau, Jellyfish, and Kraglin</strong> to make product decisions grounded in evidence, 
-        not intuition.
+        I've led the development of an <strong>AI-powered customer support chatbot</strong> that cut response times
+        by 20% and saved $250K–$300K annually, and driven onboarding automation that saved 3,500+ implementation
+        hours per year. I don't just ship features — I deliver measurable outcomes.
       </p>
       <p>
-        Based in Bangalore, Karnataka — open to enterprise product leadership roles where scale, ambiguity, and 
-        customer obsession are the daily norm.
+        Based in Bangalore, Karnataka — <strong>available to join immediately</strong>, on-site or remote.
+        Actively seeking enterprise product leadership roles where scale, ambiguity, and customer obsession
+        are the daily norm.
       </p>
     </div>
     <div class="about-info">
@@ -488,6 +500,13 @@
         <div>
           <div class="info-label">LinkedIn</div>
           <div class="info-val"><a href="https://www.linkedin.com/in/anshvilla/" target="_blank">linkedin.com/in/anshvilla</a></div>
+        </div>
+      </div>
+      <div class="info-row">
+        <div class="info-icon">🌐</div>
+        <div>
+          <div class="info-label">Portfolio</div>
+          <div class="info-val"><a href="https://sadakc.github.io/sadanand_chougule/" target="_blank">sadakc.github.io/sadanand_chougule</a></div>
         </div>
       </div>
       <div class="info-row">
@@ -515,9 +534,53 @@
   </div>
 </section>
 
+<!-- KEY CONTRIBUTIONS -->
+<section id="contributions">
+  <div class="section-label">02 — Impact</div>
+  <h2 class="section-title">Key Contributions</h2>
+  <div class="contrib-grid reveal">
+
+    <div class="contrib-item">
+      <span class="contrib-tag">AI Delivery</span>
+      <span class="contrib-text">Utilised LLM AI tools (ChatGPT, CoPilot, Claude) to accelerate initiatives, epic and user story authoring, and proactively resolve engineering roadblocks across Agile and Waterfall cycles. Used Rovo for product backlog planning and roadmap definition in Aha.</span>
+    </div>
+
+    <div class="contrib-item">
+      <span class="contrib-tag">Stakeholder Comms</span>
+      <span class="contrib-text">Deployed AI-generated briefs to align cross-functional teams and vendors across Core Banking and Insurance, reducing misinterpretation and accelerating decision cycles.</span>
+    </div>
+
+    <div class="contrib-item">
+      <span class="contrib-tag">Product Readiness</span>
+      <span class="contrib-text">Executed comprehensive Product Readiness planning, partnering with stakeholders across GTM, Sales &amp; Marketing, Implementations, Delivery, CEM/CSM, and PMO to gather and prioritise user requirements that decide vision, budget, capacity, and timelines — from 0 to 1.</span>
+    </div>
+
+    <div class="contrib-item">
+      <span class="contrib-tag">PRD Authoring</span>
+      <span class="contrib-text">Created detailed Product Requirement Documents (PRDs) within Confluence using LLM-powered workflows — improving specification consistency and communicating product needs clearly to development teams.</span>
+    </div>
+
+    <div class="contrib-item">
+      <span class="contrib-tag">AI Chatbot</span>
+      <span class="contrib-text">Led the development of an AI-powered SaaS customer support chatbot — reducing average response times by <strong>20%</strong> and lowering support operational costs by approximately <strong>$250K–$300K per year</strong>.</span>
+    </div>
+
+    <div class="contrib-item">
+      <span class="contrib-tag">Onboarding</span>
+      <span class="contrib-text">Led an implementation initiative with the Delivery team that reduced onboarding effort by <strong>35%</strong>, saving <strong>3,500+ annual implementation hours</strong> and lowering delivery costs by <strong>$150K+</strong>.</span>
+    </div>
+
+    <div class="contrib-item">
+      <span class="contrib-tag">Domain Alignment</span>
+      <span class="contrib-text">Fostered communication between stakeholders and vendors to articulate complex product requirements across Digital Platform, Core Banking, and Insurance domains — bridging business and engineering with clarity.</span>
+    </div>
+
+  </div>
+</section>
+
 <!-- EXPERIENCE -->
 <section id="experience">
-  <div class="section-label">02 — Work History</div>
+  <div class="section-label">03 — Work History</div>
   <h2 class="section-title">Experience</h2>
   <div class="timeline">
 
@@ -530,10 +593,10 @@
         <div class="tl-period">Dec 2025 – Mar 2026 · Bangalore</div>
       </div>
       <ul class="tl-desc">
-        <li>Coordinated with CRM stakeholders to translate complex requirements into scalable, high-impact product solutions aligned with business goals.</li>
+        <li>Resolved recurring misalignment between CRM stakeholders and engineering on a multi-team CRM initiative by translating complex requirements into scalable, high-impact product solutions tied directly to strategic business goals.</li>
         <li>Drove incremental delivery across cross-functional teams using Jira, Confluence, Salesforce, HubSpot, Mural, Lucid Chart, and Clay.</li>
-        <li>Prioritized Salesforce product improvement requests using ITSM workflows to deliver real business value over feature bloat.</li>
-        <li>Ensured cross-team alignment on delivery timelines, backlog health, and stakeholder communication.</li>
+        <li>Cut low-value backlog bloat by prioritising Salesforce product improvement requests through ITSM workflows, keeping delivery focused on requests with real, near-term business value.</li>
+        <li>Maintained cross-team alignment on delivery timelines, backlog health, and executive stakeholder communication.</li>
       </ul>
     </div>
 
@@ -541,35 +604,35 @@
       <div class="tl-header">
         <div>
           <div class="tl-company">Q2 Banking</div>
-          <h3 class="tl-role">Product Manager & Senior Product Owner</h3>
+          <h3 class="tl-role">Senior Product Owner &amp; Product Manager</h3>
         </div>
         <div class="tl-period">Jul 2023 – Dec 2025 · Bangalore</div>
       </div>
       <ul class="tl-desc">
-        <li>Spearheaded core digital banking platform development — integrating Delivery, Accounts, and Customer Success for seamless operations.</li>
-        <li>Drove 2× UI improvement by launching an Early Adopter program with rigorous prototype and usability testing cycles.</li>
-        <li>Collaborated with UX/UI designers and engineers to build user stories, wireframes, and prototypes using Pendo, Aha, and Salesforce.</li>
-        <li>Leveraged Pendo analytics and Tableau dashboards to refine product features based on data-driven customer insights.</li>
-        <li>Conducted multivariate experiments to continuously validate product-market fit hypotheses.</li>
-        <li>Managed Ideas Portal (PI process) to convert customer feedback into a prioritized, actionable product roadmap.</li>
-        <li>Ensured timely Salesforce work-order resolution by aligning product roadmaps with SLAs and business commitments.</li>
+        <li>Spearheaded core digital banking platform development, integrating Delivery, Sales &amp; Marketing, Legal, Security, and Customer Success/Experience for seamless end-to-end operations.</li>
+        <li>Owned the end-to-end product roadmap for a secure SaaS AI chatbot solution — driving customer support automation, increasing agent productivity, and enabling scalable customer engagement.</li>
+        <li>Achieved 2× UI improvement by implementing an Early Adopter programme with rigorous prototype and usability testing cycles supporting data-driven product decisions.</li>
+        <li>Drove self-service configuration and deployment automation for banking clients, reducing implementation timelines from 10 to 6 weeks and saving $150K+ annually.</li>
+        <li>Managed Aha! and Ideas Portal (PI process) to convert customer feedback into a structured, actionable product roadmap.</li>
+        <li>Partnered with every stakeholder to deliver a major AI milestone project from scratch: Discovery to Production (0 to 1).</li>
+        <li>Ensured timely Salesforce work-order resolution by aligning product roadmaps with business needs and SLAs.</li>
       </ul>
     </div>
 
     <div class="timeline-item reveal">
       <div class="tl-header">
         <div>
-          <div class="tl-company">Allstate Solutions</div>
-          <h3 class="tl-role">Digital Product Manager</h3>
+          <div class="tl-company">Allstate</div>
+          <h3 class="tl-role">Lead Product Consultant</h3>
         </div>
         <div class="tl-period">Sep 2017 – Jul 2023 · Bangalore</div>
       </div>
       <ul class="tl-desc">
-        <li>Defined product strategy and roadmap; regularly managed and prioritized the backlog and presented status to leadership.</li>
-        <li>Partnered with engineering, design, and compliance teams to deliver secure, high-value features for millions of daily insurance quotes and policies.</li>
-        <li>Monitored Tableau Bot Handling reports to track RPA utilization metrics and operational efficiency.</li>
-        <li>Served as Incident and Problem Manager via ServiceNow, providing 24×7 production support and maintaining maximum system uptime.</li>
-        <li>Leveraged Jira, Confluence, Mural, Version One, and Shibumi to manage Agile delivery at scale.</li>
+        <li>Delivered policy admin system enhancements that reduced policy servicing turnaround time by 20%, improved processing accuracy, and increased operational efficiency across underwriting and customer support teams.</li>
+        <li>Closed visibility gaps into bot utilisation by partnering with engineering, design, and compliance to ship secure automation-tracking features, lifting adoption through Shibumi-based value realisation.</li>
+        <li>Surfaced operational efficiency opportunities across the RPA programme by monitoring Tableau Bot Handling dashboards and tracking bot utilisation metrics.</li>
+        <li>Minimised production downtime by serving as Incident and Problem Manager via ServiceNow, providing 24×7 support across the policy admin platform.</li>
+        <li>Partnered with HR stakeholders and engineering to automate the HR payroll system.</li>
       </ul>
     </div>
 
@@ -582,10 +645,8 @@
         <div class="tl-period">Aug 2014 – Nov 2016 · Bangalore</div>
       </div>
       <ul class="tl-desc">
-        <li>Wrote and executed end-to-end functional and regression test scripts across TEST and UAT environments.</li>
-        <li>Developed and maintained manual test cases and Selenium automation scripts for Auto, Homeowners, and Umbrella lines of business.</li>
-        <li>Collaborated with the Change Management team to automate and deploy applications to production.</li>
-        <li>Maintained documentation in Confluence and supported production debugging and defect resolution.</li>
+        <li>Protected release quality across three lines of business (Auto, Homeowners, and Umbrella) by writing and executing end-to-end functional and regression test scripts across TEST and UAT environments.</li>
+        <li>Developed and maintained Selenium automation scripts and manual test cases; collaborated with Change Management for production deployments and defect resolution.</li>
       </ul>
     </div>
 
@@ -594,8 +655,8 @@
 
 <!-- SKILLS -->
 <section id="skills">
-  <div class="section-label">03 — Capabilities</div>
-  <h2 class="section-title">Skills & Tools</h2>
+  <div class="section-label">04 — Capabilities</div>
+  <h2 class="section-title">Skills &amp; Tools</h2>
   <div class="skills-grid reveal">
 
     <div class="skill-card">
@@ -614,7 +675,7 @@
     </div>
 
     <div class="skill-card">
-      <div class="skill-card-title">🛠️ Tools & Platforms</div>
+      <div class="skill-card-title">🛠️ Tools &amp; Platforms</div>
       <div class="skill-tags">
         <span class="tag">JIRA</span>
         <span class="tag">Confluence</span>
@@ -624,13 +685,12 @@
         <span class="tag">Version One</span>
         <span class="tag">Shibumi</span>
         <span class="tag">GIT</span>
-        <span class="tag">Jenkins</span>
         <span class="tag">Mainframe</span>
       </div>
     </div>
 
     <div class="skill-card">
-      <div class="skill-card-title">📊 Data & Analytics</div>
+      <div class="skill-card-title">📊 Data &amp; Analytics</div>
       <div class="skill-tags">
         <span class="tag">Tableau</span>
         <span class="tag">Pendo</span>
@@ -643,20 +703,20 @@
     </div>
 
     <div class="skill-card">
-      <div class="skill-card-title">🤖 AI & Automation</div>
+      <div class="skill-card-title">🤖 AI &amp; Automation</div>
       <div class="skill-tags">
         <span class="tag">ChatGPT</span>
         <span class="tag">Claude</span>
         <span class="tag">CoPilot</span>
         <span class="tag">Gemini</span>
         <span class="tag">Kraglin</span>
-        <span class="tag">Uizard</span>
+        <span class="tag">Agentic AI Workflows</span>
         <span class="tag">Blue Prism RPA</span>
       </div>
     </div>
 
     <div class="skill-card">
-      <div class="skill-card-title">🎨 Design & Collaboration</div>
+      <div class="skill-card-title">🎨 Design &amp; Collaboration</div>
       <div class="skill-tags">
         <span class="tag">Figma</span>
         <span class="tag">Lovable</span>
@@ -665,6 +725,7 @@
         <span class="tag">Wireframing</span>
         <span class="tag">Prototyping</span>
         <span class="tag">User Research</span>
+        <span class="tag">Accessibility</span>
       </div>
     </div>
 
@@ -672,12 +733,12 @@
       <div class="skill-card-title">🏦 Domain Expertise</div>
       <div class="skill-tags">
         <span class="tag">Digital Banking</span>
-        <span class="tag">Insurance</span>
         <span class="tag">Core Banking</span>
+        <span class="tag">Insurance</span>
         <span class="tag">SaaS</span>
         <span class="tag">PaaS</span>
         <span class="tag">CRM</span>
-        <span class="tag">RPA</span>
+        <span class="tag">Machine Learning</span>
         <span class="tag">API Integration</span>
       </div>
     </div>
@@ -687,23 +748,9 @@
 
 <!-- CERTIFICATIONS -->
 <section id="certifications">
-  <div class="section-label">04 — Credentials</div>
+  <div class="section-label">05 — Credentials</div>
   <h2 class="section-title">Certifications</h2>
   <div class="certs-grid reveal">
-    <div class="cert-card">
-      <div class="cert-icon">🤖</div>
-      <div>
-        <div class="cert-name">AI for Product Managers</div>
-        <div class="cert-org">Microsoft</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">📦</div>
-      <div>
-        <div class="cert-name">AI for Product Management</div>
-        <div class="cert-org">Pendo</div>
-      </div>
-    </div>
     <div class="cert-card">
       <div class="cert-icon">🏅</div>
       <div>
@@ -719,17 +766,24 @@
       </div>
     </div>
     <div class="cert-card">
-      <div class="cert-icon">📊</div>
+      <div class="cert-icon">🤖</div>
       <div>
-        <div class="cert-name">Pendo Admin & Analytics Certified</div>
+        <div class="cert-name">AI for Product Managers</div>
+        <div class="cert-org">Microsoft</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-icon">📦</div>
+      <div>
+        <div class="cert-name">AI for Product Management</div>
         <div class="cert-org">Pendo</div>
       </div>
     </div>
     <div class="cert-card">
-      <div class="cert-icon">⚙️</div>
+      <div class="cert-icon">📊</div>
       <div>
-        <div class="cert-name">Blue Prism Certified Developer (AD01)</div>
-        <div class="cert-org">Blue Prism</div>
+        <div class="cert-name">Pendo Admin &amp; Analytics Certified</div>
+        <div class="cert-org">Pendo</div>
       </div>
     </div>
   </div>
@@ -737,8 +791,8 @@
 
 <!-- ACHIEVEMENTS -->
 <section id="achievements">
-  <div class="section-label">05 — Recognition</div>
-  <h2 class="section-title">Awards & Achievements</h2>
+  <div class="section-label">06 — Recognition</div>
+  <h2 class="section-title">Awards &amp; Achievements</h2>
   <div class="achievements-list reveal">
     <div class="achieve-card">
       <div class="achieve-title">🏆 Excellence Award</div>
@@ -750,79 +804,87 @@
     </div>
     <div class="achieve-card">
       <div class="achieve-title">♿ Accessibility Champion</div>
-      <div class="achieve-desc">Recognised at Q2 for leading the initiative to improve accessibility standards across the digital banking platform.</div>
+      <div class="achieve-desc">Led the initiative to improve accessibility standards across the Q2 digital banking platform.</div>
     </div>
     <div class="achieve-card">
       <div class="achieve-title">🤝 Employee Engagement Lead</div>
-      <div class="achieve-desc">Active member of the Employee Engagement Team at Mphasis, driving team culture and events.</div>
+      <div class="achieve-desc">Active contributor to the Employee Engagement Team at Mphasis, driving team culture and events.</div>
     </div>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="section-label" style="justify-content:center">06 — Let's Connect</div>
-  <h2 class="section-title reveal">Open to New Opportunities</h2>
+  <div class="section-label" style="justify-content:center">07 — Let's Connect</div>
+  <h2 class="section-title reveal">Available to Join Immediately</h2>
   <div class="contact-card reveal">
-    <p>I'm always interested in discussing enterprise product leadership roles, especially in FinTech, Banking, Insurance, or SaaS platforms. Drop me a line — I respond within 24 hours.</p>
+    <div style="display:flex;justify-content:center;margin-bottom:1.5rem;">
+      <span class="avail-pill"><span class="avail-dot"></span>Open to Offers · Notice Period: Immediate</span>
+    </div>
+    <p>I'm actively looking for my next enterprise product leadership role in FinTech, Digital Banking, Insurance, or SaaS — and can join without any notice period. If you have a role that needs an experienced PM who can hit the ground running, let's talk. I respond within 24 hours.</p>
     <div class="contact-links">
-      <a href="mailto:anshvilla@gmail.com" class="contact-link">
-        <span>📧</span> anshvilla@gmail.com
-      </a>
-      <a href="tel:+919663333364" class="contact-link">
-        <span>📞</span> +91 96633 33364
-      </a>
-      <a href="https://www.linkedin.com/in/anshvilla/" target="_blank" class="contact-link">
-        <span>🔗</span> LinkedIn Profile
-      </a>
+      <a href="mailto:anshvilla@gmail.com" class="contact-link">📧 anshvilla@gmail.com</a>
+      <a href="tel:+919663333364" class="contact-link">📞 +91 96633 33364</a>
+      <a href="https://www.linkedin.com/in/anshvilla/" target="_blank" class="contact-link">🔗 LinkedIn</a>
     </div>
   </div>
 </section>
 
 <footer>
-  Designed & built for <span>Sadanand Chougule</span> · Bangalore, India · 2026
+  Designed &amp; built for <span>Sadanand Chougule</span> · Bangalore, India · 2026
 </footer>
 
 <script>
   // Custom cursor
   const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
+  const ring   = document.getElementById('cursorRing');
   let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
 
   document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX; mouseY = e.clientY;
     cursor.style.left = mouseX + 'px';
-    cursor.style.top = mouseY + 'px';
+    cursor.style.top  = mouseY + 'px';
   });
 
-  function animateRing() {
+  (function animateRing() {
     ringX += (mouseX - ringX) * 0.12;
     ringY += (mouseY - ringY) * 0.12;
     ring.style.left = ringX + 'px';
-    ring.style.top = ringY + 'px';
+    ring.style.top  = ringY + 'px';
     requestAnimationFrame(animateRing);
-  }
-  animateRing();
+  })();
 
   document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'translate(-50%, -50%) scale(2)';
-      ring.style.opacity = '0.2';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'translate(-50%, -50%) scale(1)';
-      ring.style.opacity = '0.5';
-    });
+    el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2)'; ring.style.opacity = '0.2'; });
+    el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; ring.style.opacity = '0.5'; });
   });
 
-  // Scroll reveal
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); }
-    });
-  }, { threshold: 0.1 });
+  // Scroll reveal — FIXED
+  // Elements start visible; add .hidden first, then transition to .visible on scroll
+  const revealEls = document.querySelectorAll('.reveal');
 
-  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  if ('IntersectionObserver' in window) {
+    // Mark all as hidden first (only after JS is running)
+    revealEls.forEach(el => el.classList.add('hidden'));
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.remove('hidden');
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(el => observer.observe(el));
+
+    // Safety net: ensure everything is visible after 1.5s regardless
+    setTimeout(() => {
+      revealEls.forEach(el => { el.classList.remove('hidden'); el.classList.add('visible'); });
+    }, 1500);
+  }
+  // If IntersectionObserver not supported: elements remain visible (no .hidden added)
 </script>
 </body>
 </html>
